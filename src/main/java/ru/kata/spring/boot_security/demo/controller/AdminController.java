@@ -18,7 +18,7 @@ import java.util.Collections;
 @Controller
 public class AdminController {
 
-    private final UserServiceImpl USER_SERVICE_IMPL;
+    private final UserServiceImpl USER_SERVICE_IMPL;//todo: не стоит ..правда, это не константа. Бросается в гласа - как предмет самодеятельности
     private final RoleServiceImpl ROLE_SERVICE_IMPL;
 
     @Autowired
@@ -55,7 +55,7 @@ public class AdminController {
     @GetMapping("/admin/update")
     public String getUserForUpdate(@RequestParam(value = "id") Long id,
                                    Model model) {
-        User tempUser = USER_SERVICE_IMPL.getUserById(id);
+        User tempUser = USER_SERVICE_IMPL.getUserById(id);//todo: codeStyle - осмысленное наименование tempUser
         tempUser.setPassword(""); //сбрасываем пароль для повторного encod-инга
         model.addAttribute("user", tempUser);
         return "update";

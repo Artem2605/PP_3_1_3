@@ -45,4 +45,8 @@ public class DbInit {
                 Long.valueOf("1995"), Collections.singletonList(roleOfUser));
         USER_SERVICE_IMPL.saveUser(user3);
     }
+
+    //todo: все хорошо, но...
+    // - просьба разобраться - сделать наполнение DB тест.данными через скрипт (файлик data.sql закладывается в resources, в properties - указываем - что наполнение базы - скриптом) (это можно закомментить)
+    // - доведем task до ума? (это ваш шаблон на будущее)
 }

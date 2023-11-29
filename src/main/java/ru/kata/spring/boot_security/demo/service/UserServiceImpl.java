@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
-                           @Lazy PasswordEncoder passwordEncoder) {
+                           @Lazy PasswordEncoder passwordEncoder) {//todo: @Lazy PasswordEncoder passwordEncoder - зачем?? Решение вызывает грусть.. и недоумение
         this.USER_REPOSITORY = userRepository;
         this.PASSWORD_ENCODER = passwordEncoder;
     }
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    @Transactional
+    @Transactional//todo: описывалось..
     public void saveUser(User user) {
         user.setPassword(PASSWORD_ENCODER.encode(user.getPassword()));
         USER_REPOSITORY.save(user);

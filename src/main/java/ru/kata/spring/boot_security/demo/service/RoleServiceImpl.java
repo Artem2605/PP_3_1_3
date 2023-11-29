@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService {
 
-    private final RoleRepository ROLE_REPOSITORY;
+    private final RoleRepository ROLE_REPOSITORY;//todo: ..указывалось
 
     @Autowired
     public RoleServiceImpl(RoleRepository roleRepository) {
@@ -30,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    @Transactional
+    @Transactional//todo: выносим над классом типовой случай
     public void saveRole(Role role) {
         ROLE_REPOSITORY.save(role);
     }
