@@ -15,24 +15,24 @@ import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final SuccessUserHandler SUCCESS_USER_HANDLER;
-    private final UserServiceImpl USER_SERVICE_IMPL;
+    private final SuccessUserHandler successUserHandler;
+    private final UserServiceImpl userService;
 
     @Autowired
-    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceImpl userServiceImpl) {
-        this.SUCCESS_USER_HANDLER = successUserHandler;
-        this.USER_SERVICE_IMPL = userServiceImpl;
+    public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceImpl userService) {
+        this.successUserHandler = successUserHandler;
+        this.userService = userService;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("admin", "/admin/**").hasRole("ADMIN")
-                .antMatchers("/user", "/user/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("admin", "/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/user", "/user/**").hasAnyAuthority("ADMIN", "USER")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().successHandler(SUCCESS_USER_HANDLER)
+                .formLogin().successHandler(successUserHandler)
                 .permitAll()
                 .and()
                 .logout()
@@ -48,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(passwordEncoder());
-        authenticationProvider.setUserDetailsService(USER_SERVICE_IMPL);
+        userService.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setUserDetailsService(userService);
         return authenticationProvider;
     }
 }

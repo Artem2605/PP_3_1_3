@@ -13,37 +13,30 @@
         <br>
         <label for="id">id</label>
         <input type="text" th:field="*{id}" id="id" readonly/>
-        <div style="color: red" th:if="${#fields.hasErrors('id')}"  th:errors="*{id}" />
         <br>
         <br>
         <label for="username">Имя</label>
         <input type="text" th:field="*{username}" id="username" readonly/>
-        <div style="color: red" th:if="${#fields.hasErrors('username')}"  th:errors="*{username}" />
         <br>
         <br>
         <br>
         <label for="lastName">Фамилию</label>
         <input type="text" th:field="*{lastName}" id="lastName" readonly/>
-        <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"/>
         <br>
         <br>
         <br>
         <label for="password">Пароль</label>
-        <input type="text" th:field="*{password}" id="password" readonly/>
-        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
+        <input type="password" th:field="*{password}" id="password" readonly/>
         <br>
         <br>
         <br>
         <label for="year">Год рождения</label>
         <input type="number" th:field="*{year}" id="year" readonly/>
-        <div style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"/>
         <br>
         <br>
-        <div th:each="role, item : *{roles}">
-            <label for="roles">Роли</label>
-            <input type="text" th:field="*{roles[__${item.index}__].name}" id="roles" readonly/>
-            <div style="color: red" th:if="${#fields.hasErrors('roles[__${item.index}__].name')}" th:errors="*{roles[__${item.index}__].name}"/>
-        </div>
+        <select multiple size="2" style="width: 20%" readonly>
+            <option th:each="role: *{roles}" th:value="${role.id}" th:text="${role.name}" readonly/>
+        </select>
         <br>
         <br>
         <br>

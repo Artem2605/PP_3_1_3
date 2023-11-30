@@ -1,4 +1,4 @@
-package ru.kata.spring.boot_security.demo.init;
+/*package ru.kata.spring.boot_security.demo.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,39 +14,35 @@ import java.util.List;
 @Component
 public class DbInit {
 
-    private final UserServiceImpl USER_SERVICE_IMPL;
-    private final RoleServiceImpl ROLE_SERVICE_IMPL;
+    private final UserServiceImpl userService;
+    private final RoleServiceImpl roleService;
 
     @Autowired
     public DbInit(UserServiceImpl userService, RoleServiceImpl roleService) {
-        this.USER_SERVICE_IMPL = userService;
-        this.ROLE_SERVICE_IMPL = roleService;
+        this.userService = userService;
+        this.roleService = roleService;
     }
 
     @PostConstruct
     private void postConstruct() {
-        Role roleOfAdmin = new Role("ROLE_ADMIN");
-        Role roleOfUser = new Role("ROLE_USER");
+        Role roleOfAdmin = new Role("ADMIN");
+        Role roleOfUser = new Role("USER");
         List<Role> listOfRoles = new ArrayList<>() {
             {
                 add(roleOfAdmin);
                 add(roleOfUser);
             }
         };
-        ROLE_SERVICE_IMPL.saveRole(roleOfAdmin);
-        ROLE_SERVICE_IMPL.saveRole(roleOfUser);
+        roleService.saveRole(roleOfAdmin);
+        roleService.saveRole(roleOfUser);
         User user1 = new User("admin", "admin", "admin",
                 Long.valueOf("777"), listOfRoles);
-        USER_SERVICE_IMPL.saveUser(user1);
+        userService.saveUser(user1);
         User user2 = new User("ivan", "ivanov", "ivan",
                 Long.valueOf("2000"), listOfRoles);
-        USER_SERVICE_IMPL.saveUser(user2);
-        User user3 = new User("vasya", "vasilyev", "vasya",
+        userService.saveUser(user2);
+        User user3 = new User("user", "user", "user",
                 Long.valueOf("1995"), Collections.singletonList(roleOfUser));
-        USER_SERVICE_IMPL.saveUser(user3);
+        userService.saveUser(user3);
     }
-
-    //todo: все хорошо, но...
-    // - просьба разобраться - сделать наполнение DB тест.данными через скрипт (файлик data.sql закладывается в resources, в properties - указываем - что наполнение базы - скриптом) (это можно закомментить)
-    // - доведем task до ума? (это ваш шаблон на будущее)
-}
+}*/

@@ -13,7 +13,6 @@
         <br>
         <label for="id">id</label>
         <input type="text" th:field="*{id}" id="id" readonly/>
-        <div style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"/>
         <br>
         <br>
         <label for="username">Введите имя</label>
@@ -29,7 +28,7 @@
         <br>
         <br>
         <label for="password">Введите пароль</label>
-        <input type="text" th:field="*{password}" id="password"/>
+        <input type="text" th:name="password" th:value="*{password=null}" id="password"/>
         <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"/>
         <br>
         <br>
@@ -39,12 +38,10 @@
         <div style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"/>
         <br>
         <br>
-        <div th:each="role, item : *{roles}">
-            <label for="roles">Введите роль</label>
-            <input type="text" th:field="*{roles[__${item.index}__].name}" id="roles"/>
-            <div style="color: red" th:if="${#fields.hasErrors('roles[__${item.index}__].name')}"
-                 th:errors="*{roles[__${item.index}__].name}"/>
-        </div>
+        <select multiple size="2" style="width: 20%" th:name="roles" th:value="*{roles}">
+            <option th:each="role: ${allRoles}" th:value="${role.id}"
+                    th:text="${role.name}" th:selected="${#lists.contains(user.roles, role)}"/>
+        </select>
         <br>
         <br>
         <br>

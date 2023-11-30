@@ -34,12 +34,9 @@
         <div style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}"/>
         <br>
         <br>
-        <div th:each="role, item : *{roles}">
-            <label for="roles">Введите роль</label>
-            <input type="text" th:field="*{roles[__${item.index}__].name}" id="roles"/>
-            <div style="color: red" th:if="${#fields.hasErrors('roles[__${item.index}__].name')}"
-                 th:errors="*{roles[__${item.index}__].name}"/>
-        </div>
+            <select size="2" multiple style="width: 20%" th:name="roles" th:value="*{roles}">
+                <option th:each="role: ${allRoles}" th:value="${role.id}" th:text="${role.name}" selected/>
+            </select>
         <br>
         <br>
         <br>

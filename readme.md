@@ -1,5 +1,9 @@
-# Задание:
+# Тестовые данные
+1. login: admin </br> password: admin
+2. login: user </br> password: user
+3. login: ivan </br> password: ivan
 
+# Задание:
 1. Перенесите классы и зависимости из предыдущей задачи. </br>
 2. Создайте класс Role и свяжите User с ролями так, чтобы юзер мог иметь несколько ролей. </br>
 3. Имплементируйте модели Role и User интерфейсами GrantedAuthority и UserDetails соответственно. Измените настройку секьюрности с inMemory на userDetailService. </br>
